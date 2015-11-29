@@ -10,6 +10,9 @@
 #import "JFScrollView.h"
 
 @interface ViewController ()<JFScrollViewDelegate>
+{
+    UILabel *_message;
+}
 
 @end
 
@@ -39,12 +42,16 @@
     
     [self.view addSubview:scrollView];
     
+    _message = [[UILabel alloc] initWithFrame:CGRectMake(50, 400, self.view.frame.size.width - 50, 30)];
+    [self.view addSubview:_message];
+    
     
 }
 
 - (void)scrollViewDidTaped:(UIView *)view currentPage:(NSInteger)currentPage point:(CGPoint)point
 {
-    NSLog(@"%ld----%@",currentPage,NSStringFromCGPoint(point));
+//    NSLog(@"%ld----%@",currentPage,NSStringFromCGPoint(point));
+    _message.text = [NSString stringWithFormat:@"第%ld页--x=%lf--y=%lf",currentPage,point.x,point.y];
 }
 
 - (void)didReceiveMemoryWarning {
